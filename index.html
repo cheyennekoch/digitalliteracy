@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Literacy Workshop Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0f1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 20px;
+    font-family: 'Exo 2', sans-serif;
+  }
+
+  .flyer {
+    width: 840px;
+    min-height: 960px;
+    background: #050c18;
+    border: 1px solid #0f3a50;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* Binary rain background */
+  .binary-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.06;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #00e5ff;
+    line-height: 1.4;
+    padding: 10px;
+    word-break: break-all;
+    letter-spacing: 2px;
+  }
+
+  /* Grid lines overlay */
+  .grid-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Glow lines */
+  .glow-line-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00e5ff, #006d77, #00e5ff, transparent);
+    z-index: 10;
+    box-shadow: 0 0 20px #00e5ff88;
+  }
+  .glow-line-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00e5ff, #006d77, #00e5ff, transparent);
+    z-index: 10;
+    box-shadow: 0 0 20px #00e5ff88;
+  }
+
+  .content {
+    position: relative;
+    z-index: 5;
+    padding: 0;
+  }
+
+  /* Header section */
+  .header {
+    padding: 36px 40px 28px;
+    border-bottom: 1px solid #0f3a50;
+    position: relative;
+  }
+
+  .scan-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #00e5ff;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scan-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: #00e5ff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00e5ff;
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0.2 } }
+
+  .workshop-type {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #006d77;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .main-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1.05;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .main-title span {
+    color: #00e5ff;
+    text-shadow: 0 0 30px #00e5ff88, 0 0 60px #00e5ff44;
+  }
+
+  .subtitle {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    color: #7ecfd8;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Biometric face scanner */
+  .biometric-section {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 12px 40px;
+    border-bottom: 1px solid #0f3a50;
+    background: linear-gradient(135deg, #040c1688, #091828aa);
+  }
+
+  .face-scan {
+    flex-shrink: 0;
+    width: 100px;
+    height: 120px;
+    position: relative;
+  }
+  .face-scan svg {
+    width: 100%; height: 100%;
+  }
+
+  .scan-info {
+    flex: 1;
+  }
+  .scan-info-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: #006d77;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .scan-desc {
+    font-size: 13px;
+    color: #a8cdd0;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .scan-desc strong {
+    color: #00e5ff;
+    font-weight: 600;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    border-bottom: 1px solid #0f3a50;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 18px 20px;
+    text-align: center;
+    border-right: 1px solid #0f3a50;
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #00e5ff;
+    text-shadow: 0 0 16px #00e5ff66;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: #4d8a8f;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Units section */
+  .units-section {
+    padding: 28px 40px;
+    border-bottom: 1px solid #0f3a50;
+  }
+
+  .section-header {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #00e5ff;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #00e5ff44, transparent);
+  }
+
+  .units-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .unit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #060e1a;
+    border: 1px solid #0e2f42;
+    border-left: 2px solid #006d77;
+    transition: border-color 0.2s;
+  }
+  .unit-item:hover { border-left-color: #00e5ff; }
+
+  .unit-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #006d77;
+    font-weight: 700;
+    flex-shrink: 0;
+    padding-top: 1px;
+    min-width: 20px;
+  }
+  .unit-text {
+    font-size: 12px;
+    color: #c8e8ea;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  /* Fingerprint + callout section */
+  .callout-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 30px;
+    border-bottom: 1px solid #0f3a50;
+    background: #040b16;
+  }
+
+  .fingerprint {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    opacity: 0.9;
+  }
+
+  .callout-text {
+    flex: 1;
+  }
+  .callout-headline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .callout-body {
+    font-size: 12.5px;
+    color: #7ecfd8;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Footer info */
+  .footer-info {
+    padding: 24px 40px 32px;
+  }
+
+  .info-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .info-icon {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #00e5ff;
+    flex-shrink: 0;
+    margin-top: 1px;
+    min-width: 20px;
+  }
+  .info-text {
+    font-size: 13px;
+    color: #a8cdd0;
+    font-weight: 400;
+    flex: 1;
+  }
+  .info-text strong { color: #ffffff; font-weight: 600; }
+
+  .register-box {
+    margin-top: 20px;
+    border: 1px solid #00e5ff44;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #00e5ff08, #006d7710);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .register-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: #00e5ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px #00e5ff55;
+  }
+  .register-detail {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #4d8a8f;
+    letter-spacing: 1px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .corner-bracket {
+    position: absolute;
+    width: 16px; height: 16px;
+    border-color: #00e5ff;
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .corner-bracket.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+  .corner-bracket.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+  .corner-bracket.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+  .corner-bracket.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .flyer { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="flyer">
+  <div class="glow-line-top"></div>
+  <div class="glow-line-bottom"></div>
+  <div class="corner-bracket tl"></div>
+  <div class="corner-bracket tr"></div>
+  <div class="corner-bracket bl"></div>
+  <div class="corner-bracket br"></div>
+
+  <!-- Binary background text -->
+  <div class="binary-bg">
+    01001000 01110101 01101101 01100001 01101110 00100000 01001100 01100101 01100001
+    01110010 01101110 01101001 01101110 01100111 00100000 01010011 01111001 01110011
+    01110100 01100101 01101101 01110011 00100000 01000100 01101001 01100111 01101001
+    01110100 01100001 01101100 00100000 01001100 01101001 01110100 01100101 01110010
+    01100001 01100011 01111001 00100000 01010111 01101111 01110010 01101011 01110011
+    01101000 01101111 01110000 00100000 01000001 01110010 01110100 01101001 01100110
+    01101001 01100011 01101001 01100001 01101100 00100000 01001001 01101110 01110100
+    01100101 01101100 01101100 01101001 01100111 01100101 01101110 01100011 01100101
+    01010011 01101011 01101001 01101100 01101100 01110011 00100000 01000100 01100001
+    01110100 01100001 00100000 01010000 01110010 01101001 01110110 01100001 01100011
+    01111001 00100000 01000011 01111001 01100010 01100101 01110010 01110011 01100101
+    01100011 01110101 01110010 01101001 01110100 01111001 01010011 01110000 01110010
+    01100101 01100001 01100100 01110011 01101000 01100101 01100101 01110100 01110011
+    01000100 01101111 01100011 01110101 01101101 01100101 01101110 01110100 01110011
+    00100000 01000011 01100001 01110010 01100101 01100101 01110010 01110011 00100000
+    01010010 01100101 01110011 01110101 01101101 01100101 01110011 01000011 01101111
+    01110110 01100101 01110010 01001100 01100101 01110100 01110100 01100101 01110010
+    01110011 00100000 01000010 01110101 01100100 01100111 01100101 01110100 01001000
+  </div>
+  <div class="grid-overlay"></div>
+
+  <div class="content">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="main-title"><span>DIGITAL</span><br>LITERACY</div>
+      <div class="subtitle">Navigate &bull; Create &bull; Protect &bull; Thrive</div>
+    </div>
+
+    <!-- Biometric section -->
+    <div class="biometric-section">
+      <div class="face-scan">
+        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+          <!-- Corner brackets -->
+          <line x1="5" y1="20" x2="5" y2="5" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="5" y1="5" x2="20" y2="5" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="115" y1="5" x2="100" y2="5" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="115" y1="5" x2="115" y2="20" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="5" y1="120" x2="5" y2="135" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="5" y1="135" x2="20" y2="135" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="115" y1="135" x2="100" y2="135" stroke="#00e5ff" stroke-width="2"/>
+          <line x1="115" y1="135" x2="115" y2="120" stroke="#00e5ff" stroke-width="2"/>
+          <!-- Face outline -->
+          <ellipse cx="60" cy="62" rx="38" ry="46" fill="none" stroke="#006d77" stroke-width="1" stroke-dasharray="4 3"/>
+          <!-- Scan line (animated) -->
+          <rect x="22" y="36" width="76" height="1.5" fill="#00e5ff" opacity="0.7">
+            <animate attributeName="y" from="26" to="96" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from="0.9" to="0.2" dur="2.5s" repeatCount="indefinite"/>
+          </rect>
+          <!-- Eyes -->
+          <line x1="42" y1="55" x2="54" y2="55" stroke="#00e5ff" stroke-width="1.5"/>
+          <line x1="66" y1="55" x2="78" y2="55" stroke="#00e5ff" stroke-width="1.5"/>
+          <circle cx="48" cy="55" r="3" fill="none" stroke="#00e5ff" stroke-width="1.2"/>
+          <circle cx="72" cy="55" r="3" fill="none" stroke="#00e5ff" stroke-width="1.2"/>
+          <!-- Nose bridge -->
+          <line x1="60" y1="60" x2="56" y2="72" stroke="#006d77" stroke-width="1"/>
+          <line x1="56" y1="72" x2="64" y2="72" stroke="#006d77" stroke-width="1"/>
+          <!-- Mouth -->
+          <path d="M48 82 Q60 90 72 82" fill="none" stroke="#006d77" stroke-width="1"/>
+          <!-- Data points -->
+          <circle cx="22" cy="62" r="2" fill="#00e5ff" opacity="0.6"/>
+          <circle cx="98" cy="62" r="2" fill="#00e5ff" opacity="0.6"/>
+          <line x1="24" y1="62" x2="30" y2="62" stroke="#00e5ff" stroke-width="0.8" opacity="0.4"/>
+          <line x1="90" y1="62" x2="96" y2="62" stroke="#00e5ff" stroke-width="0.8" opacity="0.4"/>
+          <!-- ID text -->
+          <text x="60" y="128" font-family="Share Tech Mono, monospace" font-size="7" fill="#4d8a8f" text-anchor="middle">ID::STUDENT_VERIFIED</text>
+        </svg>
+      </div>
+      <div class="scan-info">
+        <div class="scan-info-label">// Workshop Profile //</div>
+        <div class="scan-desc">
+          An <strong>8-week hands-on workshop</strong> designed for homeschool students ready to build real-world digital skills — from understanding computers to creating professional documents, protecting personal data, and using AI responsibly.
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Units</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1 . 5</span>
+        <span class="stat-label">Hrs / Week</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">9–12</span>
+        <span class="stat-label">Grade Level</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">$40</span>
+        <span class="stat-label">per student</span>
+      </div>
+    </div>
+
+    <!-- Units -->
+    <div class="units-section">
+      <div class="section-header">CURRICULUM MODULES</div>
+      <div class="units-grid">
+        <div class="unit-item">
+          <div class="unit-num">01</div>
+          <div class="unit-text">How Computers Work</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">02</div>
+          <div class="unit-text">Digital Citizenship</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">03</div>
+          <div class="unit-text">Creating Documents:<br>Resume, Cover Letter & References</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">04</div>
+          <div class="unit-text">Creating Spreadsheets:<br>Budget & Living Expenses</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">05</div>
+          <div class="unit-text">Presenting Information:<br>Career Options & Opportunities</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">06</div>
+          <div class="unit-text">Digital Footprint &<br>Protecting Personal Data</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">07</div>
+          <div class="unit-text">What is Artificial Intelligence?</div>
+        </div>
+        <div class="unit-item">
+          <div class="unit-num">08</div>
+          <div class="unit-text">Responsible &amp; Efficient Use of AI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fingerprint callout -->
+    <div class="callout-section">
+      <svg class="fingerprint" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fingerprint arcs -->
+        <ellipse cx="40" cy="42" rx="4" ry="5" fill="none" stroke="#006d77" stroke-width="1.2"/>
+        <ellipse cx="40" cy="42" rx="8" ry="10" fill="none" stroke="#006d77" stroke-width="1.2"/>
+        <ellipse cx="40" cy="42" rx="13" ry="16" fill="none" stroke="#00898a" stroke-width="1.2"/>
+        <ellipse cx="40" cy="42" rx="18" ry="22" fill="none" stroke="#00898a" stroke-width="1.2"/>
+        <ellipse cx="40" cy="42" rx="23" ry="28" fill="none" stroke="#00a8a8" stroke-width="1.2"/>
+        <ellipse cx="40" cy="42" rx="28" ry="33" fill="none" stroke="#00c8c8" stroke-width="1" stroke-dasharray="3 2"/>
+        <ellipse cx="40" cy="42" rx="33" ry="36" fill="none" stroke="#00e5ff" stroke-width="0.8" stroke-dasharray="2 3"/>
+        <!-- Scan indicator -->
+        <line x1="10" y1="20" x2="70" y2="20" stroke="#00e5ff" stroke-width="1" opacity="0.5">
+          <animate attributeName="y1" from="10" to="70" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="y2" from="10" to="70" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.8" to="0" dur="3s" repeatCount="indefinite"/>
+        </line>
+        <!-- Text -->
+        <text x="40" y="76" font-family="Share Tech Mono" font-size="5.5" fill="#006d77" text-anchor="middle">ACCESS::GRANTED</text>
+      </svg>
+      <div class="callout-text">
+        <div class="callout-headline">Certificate of Completion Available</div>
+        <div class="callout-body">Leave this workshop familiar with how computers work; digital citizens with a polished resume, a working budget, career research, and a clear understanding of how AI is reshaping the world — and how to use it on your terms.</div>
+      </div>
+    </div>
+
+    <!-- Footer info -->
+    <div class="footer-info">
+      <div class="section-header">SESSION DETAILS</div>
+
+      <div class="info-row">
+        <div class="info-icon">&#9654;</div>
+        <div class="info-text"><strong>Schedule:</strong> In-Person &mdash; once per week [1.5 hours per session]</div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">&#9654;</div>
+        <div class="info-text"><strong>Who:</strong> Homeschool Students, Grades 9&ndash;12</div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">&#9654;</div>
+        <div class="info-text"><strong>What to Bring:</strong> Yourself and a charged laptop with access to Internet and Google Apps</div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">&#9654;</div>
+        <div class="info-text"><strong>Instructor:</strong> Mr. Cheyenne Koch, certified teacher with 15+ years experience teaching IT</div>
+      </div>
+
+      <div class="register-box">
+        <div class="register-label"><strong>Register Now</strong> &#9654; Fall 2026</div>
+        <div class="register-detail"><img src="https://api.qrcodecreator.com/storage/qr-codes/8705431-1778343287.svg" width="60px">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /flyer -->
+
+</body>
+</html>
